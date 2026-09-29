@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1000" viewBox="0 0 1400 1000" role="img" aria-labelledby="title description">
+  <title id="title">ChronicleAI project architecture</title>
+  <desc id="description">An MVC-inspired architecture diagram showing React views, the App component controller, memory and profile models, the Hindsight service, browser local storage, and the Vite entry point.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#19162d"/></marker>
+    <marker id="arrowPurple" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#7957ff"/></marker>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="135%"><feDropShadow dx="4" dy="5" stdDeviation="0" flood-color="#19162d" flood-opacity=".9"/></filter>
+    <style>
+      text{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;fill:#19162d}
+      .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.08em}
+      .card{stroke:#19162d;stroke-width:2.5;rx:18;filter:url(#shadow)}
+      .title{font-size:48px;font-weight:850;letter-spacing:-2px}
+      .subtitle{font-size:17px;fill:#686579}
+      .sect{font-size:14px;font-weight:800;letter-spacing:2px}
+      .head{font-size:23px;font-weight:800;letter-spacing:-.5px}
+      .body{font-size:15px;fill:#514d61}
+      .file{font-size:14px;font-weight:750}
+      .tag{font-size:12px;font-weight:800;letter-spacing:.08em}
+      .line{fill:none;stroke:#19162d;stroke-width:2.5;marker-end:url(#arrow)}
+      .purpleLine{fill:none;stroke:#7957ff;stroke-width:2.8;marker-end:url(#arrowPurple)}
+      .dash{stroke-dasharray:7 7}
+    </style>
+  </defs>
+
+  <rect width="1400" height="1000" fill="#f4f0e5"/>
+  <circle cx="1305" cy="105" r="42" fill="#ffc928" stroke="#19162d" stroke-width="2.5"/>
+  <text x="1305" y="112" text-anchor="middle" font-size="20" font-weight="850">C.</text>
+  <text x="64" y="57" class="sect mono" fill="#777386">CHRONICLEAI · PROJECT MAP</text>
+  <text x="62" y="119" class="title">MVC-inspired architecture</text>
+  <text x="64" y="153" class="subtitle">How the React app, content flows, memory service, and browser storage fit together</text>
+
+  <!-- User and app entry -->
+  <rect x="64" y="192" width="250" height="82" rx="16" fill="#fffaf0" stroke="#19162d" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="88" y="224" class="tag mono">ENTRY POINT</text>
+  <text x="88" y="253" class="head">index.html → main.jsx</text>
+  <text x="345" y="241" font-size="14" font-weight="750" fill="#686579">mounts React</text>
+  <path d="M314 233H430" class="line"/>
+
+  <!-- MVC group -->
+  <rect x="64" y="310" width="1272" height="382" rx="25" fill="#eee9ff" stroke="#19162d" stroke-width="2.5"/>
+  <text x="92" y="349" class="sect mono">APPLICATION LAYER · src/App.jsx</text>
+  <rect x="1090" y="326" width="211" height="34" rx="17" fill="#ffc928" stroke="#19162d" stroke-width="1.8"/>
+  <text x="1195" y="348" text-anchor="middle" class="tag">VIEW + CONTROLLER COMBINED</text>
+
+  <!-- View -->
+  <rect x="92" y="382" width="347" height="268" class="card" fill="#25d09a"/>
+  <text x="119" y="420" class="sect mono">V · VIEW</text>
+  <text x="119" y="457" class="head">React screens</text>
+  <text x="119" y="487" class="body">Rendered by view functions in App.jsx</text>
+  <line x1="119" y1="506" x2="406" y2="506" stroke="#19162d" stroke-opacity=".25"/>
+  <text x="119" y="536" class="file">Home · Create · Ideas · Calendar</text>
+  <text x="119" y="562" class="file">Results · Memory · Settings</text>
+  <text x="119" y="601" class="body">Onboarding + memory demo modal</text>
+  <text x="119" y="627" class="body">App.css · index.css</text>
+
+  <!-- Controller -->
+  <rect x="526" y="382" width="347" height="268" class="card" fill="#7957ff"/>
+  <text x="553" y="420" class="sect mono" fill="#fff">C · CONTROLLER</text>
+  <text x="553" y="457" class="head" fill="#fff">App component</text>
+  <text x="553" y="487" class="body" fill="#fff">React state + event handlers</text>
+  <line x1="553" y1="506" x2="840" y2="506" stroke="#fff" stroke-opacity=".4"/>
+  <text x="553" y="536" class="file" fill="#fff">Navigation + onboarding</text>
+  <text x="553" y="562" class="file" fill="#fff">Generate, save, copy content</text>
+  <text x="553" y="588" class="file" fill="#fff">Ideas, calendar, prompt actions</text>
+  <text x="553" y="627" class="body" fill="#fff">Coordinates view updates and service calls</text>
+
+  <!-- Model -->
+  <rect x="960" y="382" width="347" height="268" class="card" fill="#ff693f"/>
+  <text x="987" y="420" class="sect mono">M · MODEL / DATA</text>
+  <text x="987" y="457" class="head">App data</text>
+  <text x="987" y="487" class="body">Held in React state; persisted in browser</text>
+  <line x1="987" y1="506" x2="1274" y2="506" stroke="#19162d" stroke-opacity=".25"/>
+  <text x="987" y="536" class="file">Business profile + content draft</text>
+  <text x="987" y="562" class="file">Generated content + weekly plan</text>
+  <text x="987" y="588" class="file">Ideas + saved memory entries</text>
+  <text x="987" y="627" class="body">Not separate model classes in this prototype</text>
+
+  <!-- Interactions -->
+  <path d="M439 502H519" class="line"/>
+  <text x="479" y="488" text-anchor="middle" class="tag">EVENTS</text>
+  <path d="M526 553H446" class="line"/>
+  <text x="486" y="578" text-anchor="middle" class="tag">RE-RENDER</text>
+  <path d="M873 502H953" class="purpleLine"/>
+  <text x="913" y="488" text-anchor="middle" class="tag">READ / UPDATE</text>
+  <path d="M960 553H880" class="purpleLine"/>
+
+  <!-- Service and storage -->
+  <rect x="92" y="756" width="547" height="160" rx="19" fill="#fffaf0" stroke="#19162d" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="120" y="793" class="sect mono">SERVICE LAYER</text>
+  <text x="120" y="830" class="head">hindsightService.js</text>
+  <text x="120" y="862" class="body">Retain · recall · search · rank relevant memories</text>
+  <text x="120" y="890" class="body">Persists memory records through localStorage</text>
+
+  <rect x="778" y="756" width="529" height="160" rx="19" fill="#ffc928" stroke="#19162d" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="806" y="793" class="sect mono">BROWSER STORAGE</text>
+  <text x="806" y="830" class="head">localStorage</text>
+  <text x="806" y="862" class="body">contentmind.hindsight · memory entries</text>
+  <text x="806" y="890" class="body">contentmind.profile · onboarding profile</text>
+
+  <path d="M700 650V719H367V748" class="purpleLine"/>
+  <text x="535" y="712" class="tag">MEMORY OPERATIONS</text>
+  <path d="M639 835H770" class="line"/>
+  <text x="704" y="821" text-anchor="middle" class="tag">READ / WRITE</text>
+  <path d="M1138 650V734H1042V748" class="line dash"/>
+  <text x="1153" y="714" class="tag">PROFILE + MEMORY</text>
+
+  <text x="64" y="963" class="subtitle" font-size="13">Stack: React 19 · Vite · CSS · browser localStorage  |  MVC is a conceptual mapping; this is a client-side prototype.</text>
+</svg>
